@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'maven'
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation "com.android.tools.build:gradle:3.0.1"
+}
+
+uploadArchives{
+    repositories.mavenDeployer{
+        repository(url:uri('../repo'))
+        pom.project{
+            groupId 'com.erge'
+            artifactId 'util-plugin'
+            version '1.0'
+        }
+    }
+}
+
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    userOrg = "gradle-plugin" //bintray账户下某个组织id
+    groupId = 'com.erge' //maven仓库下库的包名，一般为模块包名
+    artifactId = 'util-plugin' //项目名称
+    publishVersion = '1.0' //版本号
+    desc = 'plugin for for inject code to umeng sdk' //项目介绍，可以不写
+    website = 'https://github.com/cntlb/GradlePlugins.git'
+    dryRun = false
+}
+// publish task:
+//./gradlew clean build :erge_plugin:bintrayUpload -PbintrayUser=user -PbintrayKey=key
+
