@@ -1,0 +1,32 @@
+apply plugin: 'java-library'
+apply plugin: 'maven'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
+
+uploadArchives{
+    repositories.mavenDeployer{
+        repository(url:uri('../repo'))
+        pom.project{
+            groupId 'com.erge'
+            artifactId 'mulchannel-api'
+            version '1.0'
+        }
+    }
+}
+
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    userOrg = "gradle-plugin" //bintray账户下某个组织id
+    groupId = 'com.erge' //maven仓库下库的包名，一般为模块包名
+    artifactId = 'mulchannel-api' //项目名称
+    publishVersion = '1.0' //版本号
+    desc = 'Little-Endian RandomAccessFile and read/write comment from apk/zip file' //项目介绍，可以不写
+    website = 'https://github.com/cntlb/GradlePlugins.git'
+    dryRun = false
+}
