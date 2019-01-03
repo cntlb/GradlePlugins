@@ -1,0 +1,8 @@
+apply plugin: 'com.erge.mulchannel'
+
+mulchannel{
+    baseApk "${projectDir}/test/app-v3.1.4-360zhushou-release.apk"
+    baseChannel '360zhushou'
+    output "${projectDir}/test"
+    channelTxt "${projectDir}/test/0.channels.txt"
+}

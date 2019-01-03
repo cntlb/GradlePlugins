@@ -1,2 +1,5 @@
 rootProject.name = 'GradlePlugins'
 include ':erge_plugin'
+include ':mulchannel_api'
+include ':mulchannel_plugin'
+include ':mulchannel_test'
